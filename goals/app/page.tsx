@@ -1,3 +1,4 @@
+import Board from '@/components/Board'
 import Header from '@/components/Header'
 import Image from 'next/image'
 
@@ -8,7 +9,8 @@ export default function Home() {
         <Header />
 
       {/* Goals Board */}
-      <h1>Goals</h1>
+      <Board />
+      {/* <h1>Goals</h1> */}
     </main>
   )
 }
