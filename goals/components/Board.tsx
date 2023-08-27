@@ -9,13 +9,17 @@ import {
 } from "react-beautiful-dnd";
 
 const Board = () => {
-  const getBoard = useBoardStore((state) => state.getBoard);
+  const [board, getBoard] = useBoardStore((state) => [
+    state.board,
+    state.getBoard,
+  ]);
 
   useEffect(() => {
     getBoard();
     //console.log(getBoard());
   }, [getBoard]);
 
+  console.log(board);
   return (
     <h1>Goals</h1>
 
