@@ -1,5 +1,6 @@
 "use client";
 
+import { useBoardStore } from "@/store/BoardStore";
 import { XCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import {
@@ -24,6 +25,8 @@ const TodoCard = ({
   draggableProps,
   dragHandleProps,
 }: Props) => {
+
+  const deleteTask = useBoardStore((state)=> state.deleteTask)
   return (
     <div
       {...draggableProps}
@@ -34,7 +37,7 @@ const TodoCard = ({
       <div className="flex justify-between items-center p-5">
         <p>{todo.title}</p>
         <button className="text-red-500">
-            <XCircleIcon className="ml-5 h-8 w-8" />
+            <XCircleIcon className="ml-5 h-8 w-8" onClick={()=> deleteTask(index, todo, id) } />
         </button>
       </div>
 

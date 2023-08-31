@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const { todos } = await request.json();
 
-  console.log(todos);
+  //console.log("Line 7" ,todos);
 
   //talk AI
 
@@ -16,22 +16,22 @@ export async function POST(request: Request) {
     messages: [
       {
         role: "system",
-        content: `When responding, welcome the user as Explorer Kid and say welcome to GOALS!  Limit the response to 200 characters`,
+        content: `When responding welcome the user as Explorer Kid and say welcome to GOALS  Limit the response to 200 characters`,
       },
       {
         role: "user",
-        content: `Hi there, provide a summary of the following todos. Count how many todos are in each category such as To do, in progress and done, then tell the user to have a fruitful day! Her's the data: ${JSON.stringify(
+        content: `Hi there, provide a summary of the following todos Count how many todos are in each category such as To do in progress and done, then tell the user to have a fruitful day  the dat: ${JSON.stringify(
             todos
-        )}`
-      }
+        )}`,
+      },
     ],
   });
 
   const {data} = response;
 
-  console.log("DATA IS: ", data);
-  console.log(data.choices[0].message);
+ // console.log("DATA IS: ", data);
+  //console.log(data.choices[0].message);
 
 
-  return NextResponse.json(data.choices[0].message)
+  return NextResponse.json(data.choices[0].message);
 }
