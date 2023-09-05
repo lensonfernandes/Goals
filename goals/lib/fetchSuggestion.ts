@@ -14,10 +14,10 @@ const fetchSuggestion = async (board: Board) => {
   });
 
  // console.log("res line16", res)
-  const GPTdata = await res.json();
-  const { content } = GPTdata;
+  // const GPTdata = await res.json();
+  // const { content } = GPTdata;
 
-  return content;
+  return  {};
 };
 
 export default fetchSuggestion;

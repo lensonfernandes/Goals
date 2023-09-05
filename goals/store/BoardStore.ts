@@ -9,6 +9,10 @@ interface BoardState {
   updateTodoInDB: (todo: Todo, columnId: TypedColumn) => void;
   searchString: string;
   setSearchString: (searchString: string) => void;
+  newTaskInput: string;
+  setNewTaskInput: (input: string) => void;
+  newTaskType: TypedColumn;
+  setNewTaskType: (columnId: TypedColumn)=> void;
 
   deleteTask : ( taskIndex : number, todoId: Todo, id: TypedColumn) => void;
 }
@@ -18,6 +22,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     columns: new Map<TypedColumn, Column>(),
   },
   searchString: "",
+  newTaskInput: "",
+
   setSearchString: (searchString) => set({ searchString }),
   getBoard: async () => {
     const board = await getTodosGroupedByColumn();
@@ -25,6 +31,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   setBoardState: (board) => set({ board }),
+
+  setNewTaskInput: (input : string) =>  set({newTaskInput : input}),
 
   deleteTask: async (taskIndex: number, todo:Todo, id:TypedColumn)=> {
       const newColumns = new Map (get().board.columns);
@@ -44,6 +52,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
       );
   },
+
+  newTaskType: "todo",
+  setNewTaskType: (columnId: TypedColumn) => set({newTaskType: columnId}),
 
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
