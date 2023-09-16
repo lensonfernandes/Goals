@@ -36,15 +36,13 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex flex-col md:flex-row  items-center p-5 bg-[#134939]/80 h-140 ">
-        <div className="absolute top-0 left-0 w-full h-30 bg-gradient-to-br from-blue-300 to-slate-400 rounded-md filter blur-3xl opacity-50 -z-50 "  ></div>
+      <div className="flex flex-col md:flex-row  items-center p-5 bg-[#134939]/50 h-140 rounded-b-2xl">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#eaf2f9]-400 to-[#EBF2EF]-400 rounded-md filter blur-3xl opacity-50 -z-50 "></div>
         <Image
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4i3ECAB4jIyg3h45KKvTOFTWuru9J6oAiIQ&usqp=CAU"
           alt="logo"
           width={300}
           height={300}
-         // layout="fill"
-        //  layout="contain"
           className="w-20 md:w-25 pb-10 md:pb-0 object-contain rounded-full"
         />
 
@@ -69,8 +67,8 @@ const Header = () => {
           <Avatar name="len fern" round size="50" />
         </div>
       </div>
-      {/* <div className="flex items-center justify-center px-5  py-2 md:py-5">
-        <p className="flex items-center  text-sm font-light pr-5 p-5  shadow-xl rounded-xl w-fit bg-white italic max-w-3cl text-[#015502]">
+      <div className="flex items-center justify-center px-5  py-2 md:py-5">
+        <p className="flex items-center  text-sm font-light pr-5 p-5  shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#015502]">
           <UserCircleIcon
             className={`inline-block h-10 w-10 text-blue mr-1 ${
               loading && "animate-spin"
@@ -81,8 +79,7 @@ const Header = () => {
             ? suggestion
             : "We are summarizing your day..."}
         </p>
-       
-      </div> */}
+      </div>
     </header>
   );
 };

@@ -30,6 +30,8 @@ export const getTodosGroupedByColumn = async () => {
   // console.log(columns)
   const columnTypes: TypedColumn[] = ["todo", "inprogress", "done"];
 
+
+  //To make sure there are 3 columns irrespective of the ToDo items we have
   for (const columnType of columnTypes) {
     if (!columns.get(columnType)) {
       columns.set(columnType, {
