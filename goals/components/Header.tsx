@@ -36,14 +36,16 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex flex-col md:flex-row  items-center p-5 bg-gray-500/10">
-        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-blue-300 to-slate-400 rounded-md filter blur-3xl opacity-50 -z-50"></div>
+      <div className="flex flex-col md:flex-row  items-center p-5 bg-[#134939]/80 h-140 ">
+        <div className="absolute top-0 left-0 w-full h-30 bg-gradient-to-br from-blue-300 to-slate-400 rounded-md filter blur-3xl opacity-50 -z-50 "  ></div>
         <Image
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4i3ECAB4jIyg3h45KKvTOFTWuru9J6oAiIQ&usqp=CAU"
           alt="logo"
           width={300}
-          height={100}
-          className="w-44 md:w-56 pb-14 md:pb-0 object-contain"
+          height={300}
+         // layout="fill"
+        //  layout="contain"
+          className="w-20 md:w-25 pb-10 md:pb-0 object-contain rounded-full"
         />
 
         <div className="flex  items-center space-x-5 flex-1 justify-end w-full ">

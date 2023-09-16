@@ -12,15 +12,35 @@ function Modal() {
     state.closeModal,
   ]);
 
-  const [newTaskInput, setNewTaskInput] = useBoardStore(state => [
+  const  [addTask, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore((state) => [
+    state.addTask,
     state.newTaskInput,
     state.setNewTaskInput,
-  ])
+    state.newTaskType
+  ]);
+
+  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+
+    if(!newTaskInput)
+      return;
+
+      addTask(newTaskInput, newTaskType)
+
+     // setImage(null)
+      closeModal();
+  };
 
   return (
     // Use the `Transition` component at the root level
     <Transition show={isOpen} as={Fragment} appear>
-      <Dialog onClose={closeModal} as="form" className={"relative z-10"}>
+      <Dialog
+        onClose={closeModal}
+        as="form"
+        className={"relative z-10"}
+        onSubmit={handleSubmit}
+      >
         {/*
           Use one Transition.Child to apply one transition to the backdrop...
         */}
@@ -53,9 +73,12 @@ function Modal() {
                     className="w-full border border-gray-300 rounded-md ouotline-none p-5"
                   />
                 </div>
-{/* 
+                {/* 
                 TaskType */}
                 <TaskTypeRadioGroup />
+                <div>
+                  <button type="submit" >Add Task</button>
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
