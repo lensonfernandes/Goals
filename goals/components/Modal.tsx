@@ -12,24 +12,24 @@ function Modal() {
     state.closeModal,
   ]);
 
-  const  [addTask, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore((state) => [
-    state.addTask,
-    state.newTaskInput,
-    state.setNewTaskInput,
-    state.newTaskType
-  ]);
+  const [addTask, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore(
+    (state) => [
+      state.addTask,
+      state.newTaskInput,
+      state.setNewTaskInput,
+      state.newTaskType,
+    ]
+  );
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!newTaskInput) return;
 
-    if(!newTaskInput)
-      return;
+    addTask(newTaskInput, newTaskType);
 
-      addTask(newTaskInput, newTaskType)
-
-     // setImage(null)
-      closeModal();
+    // setImage(null)
+    closeModal();
   };
 
   return (
@@ -56,15 +56,31 @@ function Modal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              {/* <div className="fixed inset-0 bg-black bg-opacity-25" /> */}
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
               <Dialog.Panel
                 className={
                   "w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl tranisition-a"
                 }
               >
-                <Dialog.Title>Add a Task</Dialog.Title>
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-800 pb-3"
+                >
+                  Add a Task
+                </Dialog.Title>
 
-                <div>
+                <div className="mt-2">
                   <input
                     type="text"
                     value={newTaskInput}
@@ -73,21 +89,15 @@ function Modal() {
                     className="w-full border border-gray-300 rounded-md ouotline-none p-5"
                   />
                 </div>
-                {/* 
-                TaskType */}
+            
                 <TaskTypeRadioGroup />
                 <div>
-                  <button type="submit" >Add Task</button>
+                  <button type="submit">Add Task</button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
         </div>
-
-        {/*
-          ...and another Transition.Child to apply a separate transition
-          to the contents.
-        */}
       </Dialog>
     </Transition>
   );

@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const { todos } = await request.json();
 
-  console.log("Line 7", todos);
+  // console.log("Line 7", todos);
 
   //talk AI
 
-  console.log("==========================================================");
+  // console.log("==========================================================");
 
   // const generateMeta = async (title) => {
   //   const description = await openai.createChatCompletion({
@@ -49,8 +49,8 @@ export async function POST(request: Request) {
 
   const { data } = response;
 
-  console.log("DATA IS: ", data);
-  console.log(data.choices[0].message);
+  // console.log("DATA IS: ", data);
+  // console.log(data.choices[0].message);
 
   return NextResponse.json(data.choices[0].message);
   // return NextResponse.json({

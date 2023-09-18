@@ -35,22 +35,47 @@ const TaskTypeRadioGroup = () => {
     <div className="w-full py-5">
       <div className="mx-auto w-full max-w-md">
         <RadioGroup value={newTaskType} onChange={(e) => setNewTaskType(e)}>
-          <div>
+          <div className="space-y-2">
             {types.map((type) => (
-              <RadioGroup.Option key={type.id} value={type.id}>
+              <RadioGroup.Option
+                key={type.id}
+                value={type.id}
+                className={({ active, checked }) =>
+                  `${
+                    active
+                      ? "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60"
+                      : ""
+                  }
+                ${checked ? `${type.color}` : "bg-white"}
+
+                relative rounded-lg px-5 py-4 cursor-pointer flex focus:outline-none`
+                }
+              >
                 {({ active, checked }) => (
                   <>
-                    <div>
-                      <div>
-                        <div>
-                          <RadioGroup.Label>{type.name}</RadioGroup.Label>
-                          <RadioGroup.Description>
+                    <div className="flex w-full items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="text-sm">
+                          <RadioGroup.Label
+                            as="p"
+                            className={`font-medium ${
+                              checked ? "text-white" : "text-gray-900"
+                            }`}
+                          >
+                            {type.name}
+                          </RadioGroup.Label>
+                          <RadioGroup.Description
+                            as="span"
+                            className={`inline ${
+                              checked ? "text-white" : "text-gray-500"
+                            }`}
+                          >
                             {type.description}
                           </RadioGroup.Description>
                         </div>
                         {checked && (
-                          <div>
-                            <CheckCircleIcon />
+                          <div className="shrink-0 text-white">
+                            <CheckCircleIcon className="h-6 w-6" />
                           </div>
                         )}
                       </div>
