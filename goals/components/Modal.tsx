@@ -1,5 +1,5 @@
 "use client";
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment, useRef, FormEvent } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
 import { useBoardStore } from "@/store/BoardStore";
@@ -17,11 +17,12 @@ function Modal() {
     state.closeModal,
   ]);
 
-  const [image, setImage, addTask, newTaskInput, setNewTaskInput, newTaskType] =
+  const [addTask, image, setImage, newTaskInput, setNewTaskInput, newTaskType] =
     useBoardStore((state) => [
+      state.addTask,
       state.image,
       state.setImage,
-      state.addTask,
+
       state.newTaskInput,
       state.setNewTaskInput,
       state.newTaskType,
@@ -32,9 +33,9 @@ function Modal() {
 
     if (!newTaskInput) return;
 
-    addTask(newTaskInput, newTaskType);
+    addTask(newTaskInput, newTaskType, image);
 
-    // setImage(null)
+    setImage(null);
     closeModal();
   };
 
@@ -98,7 +99,7 @@ function Modal() {
 
                 <TaskTypeRadioGroup />
 
-                <div>
+                <div className="mt-4">
                   <button
                     type="button"
                     onClick={() => {
@@ -138,7 +139,6 @@ function Modal() {
                     type="submit"
                     disabled={!newTaskInput}
                     className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4 w-full sm:w-auto sm:text-sm disabled:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed"
-                    
                   >
                     Add Task
                   </button>
