@@ -77,7 +77,7 @@ const Header = () => {
 
           {suggestion && !loading
             ? suggestion
-            : "We are summarizing your day..."}
+            : "We are summarizing your day... (Powered by OpenAI)"}
         </p>
       </div>
     </header>
