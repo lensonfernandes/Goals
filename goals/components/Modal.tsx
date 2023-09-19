@@ -1,25 +1,31 @@
 "use client";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
 import { useBoardStore } from "@/store/BoardStore";
 import TaskTypeRadioGroup from "./TaskTypeRadioGroup";
+import Image from "next/image";
+import { PhotoIcon } from "@heroicons/react/20/solid";
 
 function Modal() {
   // let [isOpen, setIsOpen] = useState(true);
+
+  const imagePickerRef = useRef<HTMLInputElement>(null);
+
   const [isOpen, closeModal] = useModalStore((state) => [
     state.isOpen,
     state.closeModal,
   ]);
 
-  const [addTask, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore(
-    (state) => [
+  const [image, setImage, addTask, newTaskInput, setNewTaskInput, newTaskType] =
+    useBoardStore((state) => [
+      state.image,
+      state.setImage,
       state.addTask,
       state.newTaskInput,
       state.setNewTaskInput,
       state.newTaskType,
-    ]
-  );
+    ]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,10 +95,53 @@ function Modal() {
                     className="w-full border border-gray-300 rounded-md ouotline-none p-5"
                   />
                 </div>
-            
+
                 <TaskTypeRadioGroup />
+
                 <div>
-                  <button type="submit">Add Task</button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      imagePickerRef.current?.click();
+                    }}
+                  >
+                    <PhotoIcon className="h-6 w-6 mr-2 inline-block" /> Upload
+                    Image
+                  </button>
+                  {image && (
+                    <Image
+                      src={URL.createObjectURL(image)}
+                      width={200}
+                      height={200}
+                      alt="image"
+                      className="w-full h-44 object-cover mt-2"
+                      onClick={() => {
+                        setImage(null);
+                        // imagePickerRef.current?.click()
+                      }}
+                    />
+                  )}
+
+                  <input
+                    type="file"
+                    ref={imagePickerRef}
+                    hidden
+                    onChange={(e) => {
+                      //check if e is an image
+                      if (!e.target.files![0].type.startsWith("image/")) return;
+                      setImage(e.target.files![0]);
+                    }}
+                  />
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={!newTaskInput}
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4 w-full sm:w-auto sm:text-sm disabled:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed"
+                    
+                  >
+                    Add Task
+                  </button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
