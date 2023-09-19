@@ -7,7 +7,7 @@ import React from "react";
 
 const types = [
   {
-    id: "todos",
+    id: "todo",
     name: "Todo",
     description: "A new Task",
     color: "bg-red-500",

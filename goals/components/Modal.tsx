@@ -105,6 +105,7 @@ function Modal() {
                     onClick={() => {
                       imagePickerRef.current?.click();
                     }}
+                    className="w-full border border-gray-300 rounded-md outline-none p-5"
                   >
                     <PhotoIcon className="h-6 w-6 mr-2 inline-block" /> Upload
                     Image
