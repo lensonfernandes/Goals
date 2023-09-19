@@ -4,7 +4,7 @@ import { useBoardStore } from "@/store/BoardStore";
 import { Result } from "postcss";
 import React, { useEffect } from "react";
 import {
-  DragDropContent,
+ // DragDropContent,
   DragDropContext,
   DropResult,
   Droppable,
