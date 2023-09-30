@@ -8,6 +8,7 @@ import {
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
 import fetchSuggestion from "@/lib/fetchSuggestion";
+import logoImage from "@/public/images/goalsLogo.jpg";
 
 const Header = () => {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
@@ -36,15 +37,18 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex flex-col md:flex-row  items-center p-5 bg-[#134939]/50 h-140 rounded-b-2xl">
+      <div className="flex flex-col md:flex-row  items-center p-5 bg-[#134939]/50 h-140 ">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#eaf2f9]-400 to-[#EBF2EF]-400 rounded-md filter blur-3xl opacity-50 -z-50 "></div>
-        <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4i3ECAB4jIyg3h45KKvTOFTWuru9J6oAiIQ&usqp=CAU"
-          alt="logo"
-          width={300}
-          height={300}
-          className="w-20 md:w-25 pb-10 md:pb-0 object-contain rounded-full"
-        />
+        <span className="flex justify-center items-center gap-10 ">
+          <Image
+            src={logoImage}
+            alt="logo"
+            width={300}
+            height={300}
+            className="w-20 md:w-25 pb-10 md:pb-0 object-contain rounded-full"
+          />
+          <h1 className="text-4xl font-bold text-slate-900">Goals</h1>
+        </span>
 
         <div className="flex  items-center space-x-5 flex-1 justify-end w-full ">
           {/* Search */}
